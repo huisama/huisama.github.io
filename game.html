@@ -38,11 +38,9 @@
         window.addEventListener("load", function () {
             var items = document.getElementById("container").children;
             var path = document.getElementById("path");
-            alert(11);
             if (items.length != 16)
                 alert("垃圾浏览器不支持");
             document.addEventListener("keyup", function (e) {
-                alert(e.keyCode);
                 var i, t, c;
                 for (i = 0; items[i].className != "w"; ++i);
                 switch (e.keyCode) {
