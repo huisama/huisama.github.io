@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+
+    <style>
+        .container{
+            width: 240px;
+            height: 240px;
+            overflow: hidden;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .container div{
+            width: 58px;
+            height: 58px;
+            float: left;
+            border: black 1px solid;
+        }
+
+        #path{
+            text-align: center;
+            margin-top: 15px;
+            width: 75%;
+            margin: 0 auto;
+            font-size: 18px;
+            font-family: 'Monaco';
+        }
+
+        .container div.w{ background-color: white; }
+        .container div.r{ background-color: red; }
+        .container div.b{ background-color: blue; }
+    </style>
+
+    <script>
+        window.addEventListener("load", function () {
+            var items = document.getElementById("container").children;
+            var path = document.getElementById("path");
+            if (items.length != 16)
+                alert("垃圾浏览器不支持");
+            document.addEventListener("keypress", function (e) {
+                var i, t, c;
+                for (i = 0; items[i].className != "w"; ++i);
+                switch (e.keyCode) {
+                    case 37: // l
+                        if (i % 4 != 0) {
+                            t = i - 1;
+                            c = "L";
+                        }
+                        break;
+                    case 38: // u
+                        if (i >= 4) {
+                            t = i - 4;
+                            c = "U";
+                        }
+                        break;
+                    case 39: // r
+                        if (i % 4 != 3) {
+                            t = i + 1;
+                            c = "R";
+                        }
+                        break;
+                    case 40: // d
+                        if (i <= (15 - 4)) {
+                            t = i + 4;
+                            c = "D";
+                        }
+                        break;
+                }
+                if (c != null && c != "") {
+                    var tc = items[i].className;
+                    items[i].className = items[t].className;
+                    items[t].className = tc;
+                    path.innerHTML += c;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="w"></div>
+        <div class="r"></div>
+        <div class="b"></div>
+        <div class="b"></div>
+        <div class="r"></div>
+        <div class="r"></div>
+        <div class="b"></div>
+        <div class="b"></div>
+        <div class="r"></div>
+        <div class="r"></div>
+        <div class="b"></div>
+        <div class="b"></div>
+        <div class="r"></div>
+        <div class="r"></div>
+        <div class="b"></div>
+        <div class="b"></div>
+    </div>
+    <p id="path"></p>
+</body>
+</html>
